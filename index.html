@@ -417,28 +417,128 @@
       </aside>
     </section>
 
-    <section>
-      ***PENDING***
+    <section style="text-align: left">
       <h3>MongoDB</h3>
-      Utiliza JavaScript
-      Sem normalização e esquema
-      Agilidade
-      Fácil de escalar
-      MLab (Grátis para teste)
+      <p>✓ Utiliza JavaScript</p>
+      <p>✓ Coleções e documentos</p>
+      <p>✓ <u>Sem normalização e esquema</u></p>
+      <p>✓ Fácil de escalar (cluster)</p>
+      <a href="https://mlab.com/">mlab.com</a>
+      <aside class="notes">
+      </aside>
+    </section>
 
+    <section style="text-align: left">
+      <h3>MeteorJS</h3>
+      <p>✓ <u>Convenção ao invés de configuração</u></p>
+      <p>✓ Fácil deploy `meteor deploy`</p>
+      <p>✓ Cliente e servidor integrado</p>
+      <p>✓ API isomórfica</p>
+      <p>✓ Build integrado de Apps Nativos</p>
+      <p>✓ <u>Hot Code Push</u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>MeteorJS + MongoDB</h3>
+      <p>✓ <u>Mini Mongo</u></p>
+      <p>✓ Publication / Subscription</p>
+      <p>✓ Escalável com Redis</p>
       <aside class="notes">
       </aside>
     </section>
 
     <section>
-      ***PENDING***
-      <h3>Meteor</h3>
-      Facilidade no Deploy
-      Facilidade na configuração (server e client)
-      ALTERNATIVA: NextJS
-      Now
-      Deploy on the edges
+      <h3>Inserindo</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const Pedidos = new <mark>Mongo.Collection</mark>('pedidos');
 
+        const pedido = {
+          pessoa,
+          valor: 100.50,
+          quantidade: 5,
+          produtos: [
+            { _id: 1, nome: 'Sabonete', valor: 5.5, quantidade: 3 },
+            { _id: 2, nome: 'Azeite', valor: 84.0, quantidade: 4 },
+          ]
+        };
+        const _id = Pedidos.<mark>insert</mark>(pedido);
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Removendo</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const Pedidos = new Mongo.Collection('pedidos');
+
+        Pedidos.<mark>remove</mark>(_id);
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Buscando</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const Pedidos = new Mongo.Collection('pedidos');
+
+        const pedidosCaros = Pedidos.<mark>find</mark>({ value: { $gt: 50.0 } });
+
+        const pedidosComAzeite = Pedidos.<mark>find</mark>({ produtos:
+          { $elemMatch: { nome: 'Azeite' } }
+        });
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Atualizando</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const Pedidos = new Mongo.Collection('pedidos');
+
+        const produto = {
+          _id: 3,
+          nome: 'Macarrão',
+          valor: 8.0,
+          quantidade: 3
+        };
+
+        Pedidos.<mark>update</mark>(_id, { $addToSet:
+          { produtos: produto }
+        });
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Atualizando 2</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const Pedidos = new Mongo.Collection('pedidos');
+
+        const produtos = [
+          { _id: 4, nome: 'Farinha', valor: 4.0, quantidade: 10},
+          { _id: 5, nome: 'Fermento', valor: 7.5, quantidade: 1}
+        ];
+
+        Pedidos.<mark>update</mark>(_id, { $set:
+          { produtos } // produtos: produtos, lembra?
+        });
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>NextJS</h3>
+      <p>* Alternativa ao Meteor</p>
+      <p>✓ Foco em SSR</p>
+      <p>✓ Fácil deploy com `now`</p>
+      <p>✓ Integração com CDN</p>
       <aside class="notes">
       </aside>
     </section>
@@ -452,73 +552,195 @@
     </section>
 
     <section>
-      ***PENDING***
-      <h3>GraphQL</h3>
-      Evita vários problemas do REST
-      Comparativo REST x GraphQL https://www.howtographql.com/basics/1-graphql-is-the-better-rest/
-      Diminui muito problemas de gestão de estado no cliente
-      Fortemente tipado
+      <h3>Como separar bem <u>cliente</u> e <u>servidor</u>?</h3>
       <aside class="notes">
       </aside>
     </section>
 
     <section>
-      ***PENDING***
-      <h3>ReactJS</h3>
-      Principal tecnologia do mercado para Front end
-      Hoje o problema é o front, o backend é fácil
-      Histórica: jQuery até chegar no React, inpiração https://www.youtube.com/watch?v=vyO5wKHlWZg
-      Programação funcional
-      HOC
-      Redux?
+      <h3>REST?</h3>
+      <aside class="notes">
+      </aside>
+    </section>
 
+    <section>
+      <img src="public/rest.png" width="750"/>
+      <p><u></u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/graphql-request.png"/>
+      <p><u></u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/graphql.png"/>
+      <p><u></u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>GraphQL</h3>
+      <p>✓ <u>Capacidades e Necessidades</u></p>
+      <p>✓ Fortemente Tipado</p>
+      <p>✓ Formato Exato</p>
+      <p>✓ Auto documentado</p>
+      <p>✓ Auto descobrimento</p>
+      <aside class="notes">
+        Se der tempo abrir uma GraphiQL e mostrar como é fácil
+      </aside>
+    </section>
+
+    <section>
+      <h3>Como criar componentes reusáveis <u>de verdade</u>?</h3>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>ReactJS</h3>
+      <p>✓ <u>Comunidade gigante</u></p>
+      <p>✓ Sintaxe facilitada</p>
+      <p>✓ Baseado em Funções</p>
+      <p>✓ Fácil de modularizar</p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/react-image.png" width="700"/>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/react-person-image.png"/>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/react-person-image-usage.png" width="800"/>
       <aside class="notes">
       </aside>
     </section>
 
     <section>
       <img src="public/bad-ui.gif"/>
-      <p><u></u></p>
-      <aside class="notes">
-
-      </aside>
-    </section>
-
-    <section>
-      ***PENDING***
-      <h3>Material</h3>
-      Material
-      Icons
-      Material UI
-
-      <aside class="notes">
-      </aside>
-    </section>
-
-    <section>
-      ***PENDING***
-      <h3>CSS</h3>
-      Flexbox (1 dimensao) flexbox.io
-      CSS Grid (multiplas) cssgrid.io/
-      <aside class="notes">
-      </aside>
-    </section>
-
-    <section>
-      ***PENDING***
-      <h3>Nativo, Hibrido, PWA</h3>
-      Meteor Cordova -> lojas
-      Swift / Java|Kotlin
-      PWA = JS
       <aside class="notes">
       </aside>
     </section>
 
     <section style="text-align: left">
-      <h3></h3>
-      <p></p>
+      <h3>Material Design</h3>
+      <p>✓ Imitar o mundo real</p>
+      <p>✓ <u>Google como criador</u></p>
+      <p>✓ Ícones</p>
+      <p>✓ Animações</p>
+      <a href="https://material-ui.com/">Material UI</a>
       <aside class="notes">
       </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>CSS</h3>
+      <p>✓ Alinhamento</p>
+      <p>✓ <u>Distribuição</u></p>
+      <p>✓ Cores</p>
+      <a href="https://flexbox.io">flexbox.io</a><br/>
+      <a href="https://cssgrid.io">cssgrid.io</a>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/fixed-header.gif" width="300"/>
+      <p><u></u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <pre class="css"><code data-trim data-noescape>
+      .app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: auto;
+      }
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <pre class="css"><code data-trim data-noescape>
+      .app-header {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .main::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background: inherit;
+      }
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>Nativo, Híbrido ou PWA</h3>
+      <p>Nativo: Swift & Object C | Kotlin & Java</p>
+      <p>Nativo com JavaScript: React Native</p>
+      <p>Híbrido: Cordova</p>
+      <p>PWA: Web</p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Comece pelo problema e como resolver ele da forma mais <u>simples</u> possível</h3>
+    </section>
+
+    <section>
+      <h3>PWA: manifest.json</h3>
+      <pre class="json"><code data-trim data-noescape>
+        {
+          "name": "Wantch",
+          "short_name": "Wantch",
+          "start_url": "/",
+          "display": "standalone",
+          "background_color": "white",
+          "lang": "pt-BR",
+          "theme_color": "#315481",
+          "orientation": "portrait"
+        }
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Quais seriam suas escolhas hoje?</h3>
+      <p><u>PWA</u></p>
+      <p>MongoDB</p>
+      <p>MeteorJS</p>
+      <p>ReactJS</p>
     </section>
 
     <section>
