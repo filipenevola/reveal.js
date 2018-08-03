@@ -191,11 +191,326 @@
       </aside>
     </section>
 
+    <section style="text-align: left">
+      <h3>Como Escolher?</h3>
+      <p>✓ Siga no GitHub</p>
+      <p>✓ <u>Issues e PRs</u></p>
+      <p>✓ Downloads</p>
+      <p>✓ Confira contra indicações</p>
+      <aside class="notes">
+        Veja tambem as vagas abertas se quiser arrumar trabalho
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>Veja vagas abertas mas pense no <u>futuro</u>!</h3>
+      <aside class="notes">
+        vagas hoje não é garantia de vagas futuras
+      </aside>
+    </section>
+
+    <section style="text-align: left">
+      <h3>Se gosta de <u>empreender</u>, se arrisque!</h3>
+      <aside class="notes">
+      </aside>
+    </section>
+
     <section>
-      <img src="public/"/>
+      <img src="public/take-deep-breath.gif"/>
+      <p><u></u></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>JavaScript</h3>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Falsy Values</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        if (false)      // false
+        if (0)          // false
+        if ('')         // false
+        if ("")         // false
+        if (null)       // false
+        if (undefined)  // false
+        if (NaN)        // false
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Conditions</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        'Texto' && false  // 'Texto'
+        false && 'Texto'  // false
+        'Texto' || false  // 'Texto'
+        false || 'Texto'  // 'Texto'
+        false || ''       // ''
+        false && 10       // false
+        false || 10       // 10
+        true || ''        // true
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Template Strings</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        // passado
+        const tituloEmail = 'Olá ' + nome + ', bem-vindo!';
+
+        // presente
+        const tituloEmail = `Olá ${nome}, bem-vindo!`;
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Functions</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        // passado
+        function gerarEmail(nome) {
+          return 'Olá ' + nome + ', bem-vindo!';
+        }
+        // presente
+        const gerarEmail = (nome) => {
+          return `Olá ${nome}, bem-vindo!`;
+        }
+        // presente - encurtado
+        const gerarEmail = nome => {
+          return `Olá ${nome}, bem-vindo!`;
+        }
+        // presente - mais encurtado
+        const gerarEmail = nome => `Olá ${nome}, bem-vindo!`;
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Objects</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const pessoa = {
+          nome: 'Denilson',
+          idade: 20,
+        };
+        const pedido = {
+          <mark>pessoa: pessoa,</mark>
+          valor: 100.50,
+        };
+        // object shorthand
+        const pedido2 = {
+          <mark>pessoa,</mark>
+          valor: 100.50,
+        };
+        // encurtado com return de objeto
+        const gerarPedido = pessoa, valor => <mark>(</mark>{pessoa, valor}<mark>)</mark>;
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Object Operations</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const pedido = {
+          <mark>pessoa,</mark>
+          valor: 100.50,
+          quantidade: 5,
+        };
+        // passado
+        const valor = pedido.valor;
+
+        // presente
+        const { valor } = pedido;
+        const { pessoa, ...restante } = pedido;
+        // restante === { valor: 100.50, quantidade: 5}
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Arrays</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const array = [1, 2, 3, 4, 5];
+
+        // passado
+        const temCinco = array.indexOf(5) !== -1;
+
+        // presente
+        const temCinco = array.includes(5);
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Funcional</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const array = [1, 2, 3, 4, 5];
+
+        const somentePar = array
+          .<mark>filter</mark>(e => e % 2 === 0);
+        // [2, 4]
+
+        const imparEmDobro = array
+          .<mark>filter</mark>(e => e % 2 !== 0)
+          .<mark>map</mark>(e => e * 2);
+        // [2, 6, 10]
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Modules</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        // <mark>numeros.js</mark>
+        export const numeros = [1, 2, 3, 4, 5];
+
+        // <mark>filtro.js</mark>
+        import { numeros } from '<mark>numeros.js</mark>';
+        const somentePar = numeros
+          .filter(e => e % 2 === 0);
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Promises e Async</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const obterDados = async () => {
+          return rp('api.movies.com');
+        }
+
+        obterDados()
+          .<mark>then</mark>(dados => {
+            console.log(dados);
+          })
+          .<mark>catch</mark>(erro => console.error('Problema', erro))
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h3>Promises e Async/Await</h3>
+      <pre class="javascript"><code data-trim data-noescape>
+        const obterDados = async () => {
+          return rp('api.movies.com');
+        }
+
+        const dados = await obterDados()
+
+        console.log(dados);
+      </code></pre>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>MongoDB</h3>
+      Utiliza JavaScript
+      Sem normalização e esquema
+      Agilidade
+      Fácil de escalar
+      MLab (Grátis para teste)
+
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>Meteor</h3>
+      Facilidade no Deploy
+      Facilidade na configuração (server e client)
+      ALTERNATIVA: NextJS
+      Now
+      Deploy on the edges
+
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/so-easy.gif"/>
+      <p><u></u></p>
+      <aside class="notes">
+        até aqui é facil mas hoje o desafio fica no cliente
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>GraphQL</h3>
+      Evita vários problemas do REST
+      Comparativo REST x GraphQL https://www.howtographql.com/basics/1-graphql-is-the-better-rest/
+      Diminui muito problemas de gestão de estado no cliente
+      Fortemente tipado
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>ReactJS</h3>
+      Principal tecnologia do mercado para Front end
+      Hoje o problema é o front, o backend é fácil
+      Histórica: jQuery até chegar no React, inpiração https://www.youtube.com/watch?v=vyO5wKHlWZg
+      Programação funcional
+      HOC
+      Redux?
+
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <img src="public/bad-ui.gif"/>
       <p><u></u></p>
       <aside class="notes">
 
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>Material</h3>
+      Material
+      Icons
+      Material UI
+
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>CSS</h3>
+      Flexbox (1 dimensao) flexbox.io
+      CSS Grid (multiplas) cssgrid.io/
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      ***PENDING***
+      <h3>Nativo, Hibrido, PWA</h3>
+      Meteor Cordova -> lojas
+      Swift / Java|Kotlin
+      PWA = JS
+      <aside class="notes">
       </aside>
     </section>
 
